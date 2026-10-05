@@ -1,0 +1,9 @@
+{
+  "name": "我的劇單",
+  "short_name": "劇單",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0f0d13",
+  "theme_color": "#17131f",
+  "lang": "zh-Hant"
+}
