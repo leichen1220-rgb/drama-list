@@ -1,5 +1,1 @@
-# drama-list
-
-手機版劇單。GitHub Pages 設定：Settings → Pages → Deploy from a branch → main / (root).
-
-資料修改保存在瀏覽器本機，可匯出 Excel 相容 `.xls`，也可用 JSON 備份/還原。
+劇單 v5：彈性輸入、多條件篩選、卡片/精簡/表格顯示，Excel 匯出直接修改模板工作表 XML，避免破壞其他工作表的 Excel Table。
