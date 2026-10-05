@@ -39,8 +39,22 @@
       const vals=[x['看完']===true,x['國']||null,x['類別']||null,x['名稱']||null,x['季']??null,x['集數']??null,x['目前觀看']??null,excelDate(x['首播年']),x['狀態']||null,x['系列作品']||null,x['備註']||null,x['OTT']||null];
       vals.forEach((v,j)=>ws.getCell(r,j+1).value=v);
     });
-    // 讓日期欄維持原本日期顯示。
-    for(let r=2;r<=data.length+1;r++) ws.getCell(r,8).numFmt=ws.getCell(2,8).numFmt||'yyyy/m/d';
+    // 校正匯出欄位格式：季=整數；集數/目前觀看=通用；首播年=日期。
+    // M 欄是原檔用來防止重複建資料的辨識公式，完整保留並延伸到新資料列。
+    for(let r=2;r<=data.length+1;r++){
+      ws.getCell(r,5).numFmt='0';
+      ws.getCell(r,6).numFmt='General';
+      ws.getCell(r,7).numFmt='General';
+      ws.getCell(r,8).numFmt=ws.getCell(2,8).numFmt||'yyyy/m/d';
+      const m=ws.getCell(r,13);
+      if(r>702){
+        const srcM=ws.getCell(702,13);
+        m.style=JSON.parse(JSON.stringify(srcM.style||{}));
+        m.numFmt=srcM.numFmt||'General';
+        m.alignment=srcM.alignment?JSON.parse(JSON.stringify(srcM.alignment)):undefined;
+      }
+      m.value={formula:`CONCATENATE(C${r},D${r},\" \",E${r})`};
+    }
     const out=await wb.xlsx.writeBuffer();
     download(new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),'劇單_匯出_'+new Date().toISOString().slice(0,10)+'.xlsx');
   }catch(err){console.error(err);alert('匯出失敗：'+(err?.message||err));}
