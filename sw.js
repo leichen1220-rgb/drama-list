@@ -1,5 +1,5 @@
-const CACHE='drama-list-v3';
-const ASSETS=['./','./index.html','./data.js','./manifest.webmanifest'];
+const CACHE='drama-list-v4';
+const ASSETS=['./','./index.html','./data.js','./manifest.webmanifest','./劇單模板.xlsx'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
 self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).then(r=>{const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return r}).catch(()=>caches.match(e.request))));
