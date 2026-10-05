@@ -1,4 +1,4 @@
-const CACHE='drama-list-v2';
+const CACHE='drama-list-v3';
 const ASSETS=['./','./index.html','./data.js','./manifest.webmanifest'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
