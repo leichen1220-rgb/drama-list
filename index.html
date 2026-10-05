@@ -5,7 +5,7 @@
   if(typeof ExcelJS==='undefined'){alert('Excel 匯出元件尚未載入，請確認網路後重新整理再試。');return;}
   try{
     // 直接以你原本的 Excel 當模板：保留工作表、欄寬、顏色、凍結、下拉選單等版面。
-    const resp=await fetch('./劇單模板.xlsx',{cache:'no-store'});
+    const resp=await fetch('./drama-list-template.xlsx',{cache:'no-store'});
     if(!resp.ok)throw new Error('找不到 Excel 模板');
     const buf=await resp.arrayBuffer();
     const wb=new ExcelJS.Workbook();
